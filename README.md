@@ -1,3 +1,5 @@
+This is our readme.
+
 The goal of this exercise is to experiment with a belongs_to and has_many both in Rails Console and in Views.
 
 ```
