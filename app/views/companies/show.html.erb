@@ -1,0 +1,75 @@
+<h1><%= @company.name %></h1>
+
+<dl class="dl-horizontal">
+  <dt>Name</dt>
+  <dd><%= @company.name%></dd>
+  <dt>Suffix</dt>
+  <dd> <%= @company.suffix %></dd>
+  <dt>Catch Phrase</dt>
+  <dd> <%= @company.catch_phrase %></dd>
+  <dt>Email</dt>
+  <dd> <%= mail_to @company.email %></dd>
+  <dt>Start Date</dt>
+  <dd> <%= @company.start_date %></dd>
+  <dt>Industry</dt>
+  <dd> <%= @company.industry %></dd>
+</dl>
+
+<br>
+<%= link_to "Delete", companies_path, class: "btn btn-danger", method: :delete %>
+<%= link_to "Edit", edit_company_path(@company), class: "btn btn-info" %>
+<br>
+
+<h3><%= @company.name %>'s Locations</h3>
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>City</th>
+      <th>Street</th>
+      <th>State</th>
+      <th>Country</th>
+      <th>Zipcode</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @locations.each do |location| %>
+    <tr>
+      <td><%= location.city %></td>
+      <td><%= location.street_name %></td>
+      <td><%= location.state %></td>
+      <td><%= location.country %></td>
+      <td><%= location.zip_code %></td>
+      <td class="text-right">
+      <%= link_to 'Delete', company_location_path(@company, location), class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+    </td>
+  </tr>
+  <% end %>
+</tbody>
+</table>
+
+<br>
+
+<h3><%= @company.name %>'s Products</h3>
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Department</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
+    <tr>
+      <td><%= product.name %></td>
+      <td><%= product.department %></td>
+      <td><%= product.price %></td>
+      <td class="text-right">
+        <%= link_to 'Create Review', new_company_product_review_path(@company, product), class: "btn btn-info" %>
+      <%= link_to 'Delete', company_product_path(@company, product), class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+    </td>
+  </tr>
+  <% end %>
+</tbody>
+</table>
